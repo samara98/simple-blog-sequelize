@@ -1,0 +1,51 @@
+{
+  "name": "simple-blog-sequelize",
+  "version": "1.0.0",
+  "private": true,
+  "author": "Sulthon Abdul Malik <sulthon.abdmalik@gmail.com>",
+  "license": "MIT",
+  "description": "Simple Blog with Sequelize",
+  "main": "src/bin/www",
+  "scripts": {
+    "start": "node .",
+    "start:dev": "cross-env NODE_ENV=development nodemon .",
+    "start:debug": "cross-env DEBUG=simple-blog-sequelize:* npm run start:dev",
+    "start:debug-express": "cross-env DEBUG=express:* npm run start:dev",
+    "prettier:file": "prettier -w \"{public,src}/**/*.{md,html,scss,json,js,ts}\""
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "node-sass-middleware": "0.11.0",
+    "pug": "2.0.0-beta11"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "dotenv": "^8.2.0",
+    "husky": "^4.3.8",
+    "lint-staged": "^10.5.3",
+    "nodemon": "^2.0.7",
+    "prettier": "^2.2.1"
+  },
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samara98/simple-blog-sequelize.git"
+  },
+  "bugs": {
+    "url": "https://github.com/samara98/simple-blog-sequelize/issues"
+  },
+  "homepage": "https://github.com/samara98/simple-blog-sequelize#readme",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{md,html,scss,json,js,ts}": "prettier -w"
+  }
+}

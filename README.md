@@ -1,1 +1,3 @@
-# simple-blog-sequelize
+# Simple Blog - Sequelize
+
+Simple Blog with Sequelize
