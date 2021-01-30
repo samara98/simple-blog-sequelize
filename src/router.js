@@ -1,6 +1,7 @@
+'use strict';
 const express = require('express');
 
-const usersRouter = require('./routes/users');
+const authRouter = require('./routes/auth-router');
 
 const router = express.Router();
 
@@ -9,6 +10,6 @@ router.get('/', async (req, res, next) => {
   res.render('index', { title: 'Express' });
 });
 
-router.use('/users', usersRouter);
+router.use('/auth', authRouter);
 
 module.exports = router;

@@ -12,6 +12,7 @@ if (process.env.NODE_ENV === 'development') {
 const app = require('../app');
 const debug = require('debug')('simple-blog-sequelize:server');
 const http = require('http');
+const db = require('../models');
 
 /**
  * Get port from environment and store in Express.
@@ -23,6 +24,15 @@ app.set('port', port);
  * Create HTTP server.
  */
 const server = http.createServer(app);
+
+(async () => {
+  try {
+    await db.sequelize.authenticate();
+    console.log('Connection has been established successfully.');
+  } catch (error) {
+    console.error('Unable to connect to the database:', error);
+  }
+})();
 
 /**
  * Listen on provided port, on all network interfaces.
