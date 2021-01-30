@@ -11,7 +11,8 @@
     "start:dev": "cross-env NODE_ENV=development nodemon .",
     "start:debug": "cross-env DEBUG=simple-blog-sequelize:* npm run start:dev",
     "start:debug-express": "cross-env DEBUG=express:* npm run start:dev",
-    "prettier:file": "prettier -w \"{public,src}/**/*.{md,html,scss,json,js,ts}\""
+    "prettier:file": "prettier -w \"{public,src}/**/*.{md,html,scss,json,js,ts}\"",
+    "seq": "sequelize"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
