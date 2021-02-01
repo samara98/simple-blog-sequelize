@@ -13,6 +13,7 @@ module.exports = (sequelize, DT = DataTypes) => {
       // define association here
       this.hasOne(models.UserProfile, { foreignKey: 'user_id', sourceKey: 'id', as: 'profile' });
       this.hasMany(models.Post, { foreignKey: 'creator', sourceKey: 'id' });
+      this.hasMany(models.Comment, { foreignKey: 'user_id', sourceKey: 'id', as: 'comments' });
     }
   }
 
@@ -33,6 +34,7 @@ module.exports = (sequelize, DT = DataTypes) => {
       modelName: 'User',
       createdAt: 'created_at',
       updatedAt: 'updated_at',
+      defaultScope: { attributes: { exclude: ['password'] } },
       hooks: {
         beforeCreate: async (user, opt) => {
           const hash = await hashPassword(user.password);

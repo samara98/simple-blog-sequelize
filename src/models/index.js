@@ -16,6 +16,7 @@ const sequelize = config.url
 const User = require('./User')(sequelize, DataTypes);
 const UserProfile = require('./UserProfile')(sequelize, DataTypes);
 const Post = require('./Post')(sequelize, DataTypes);
+const Comment = require('./Comment')(sequelize, DataTypes);
 
 // fs.readdirSync(__dirname)
 //   .filter((file) => {
@@ -30,6 +31,7 @@ const db = {
   User,
   UserProfile,
   Post,
+  Comment,
   sequelize,
   Sequelize,
 };

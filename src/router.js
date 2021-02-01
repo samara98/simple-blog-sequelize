@@ -2,6 +2,7 @@
 const express = require('express');
 
 const authRouter = require('./routes/auth-router');
+const commentRouter = require('./routes/comment-router');
 const postsRouter = require('./routes/posts-router');
 
 const router = express.Router();
@@ -13,5 +14,6 @@ router.get('/', async (req, res, next) => {
 
 router.use('/auth', authRouter);
 router.use('/posts', postsRouter);
+router.use('/comments', commentRouter);
 
 module.exports = router;
