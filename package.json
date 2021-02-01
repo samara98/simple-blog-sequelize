@@ -11,10 +11,10 @@
     "start:dev": "cross-env NODE_ENV=development nodemon .",
     "start:debug": "cross-env DEBUG=simple-blog-sequelize:* npm run start:dev",
     "start:debug-express": "cross-env DEBUG=express:* npm run start:dev",
-    "prettier:file": "prettier -w \"{public,src}/**/*.{md,html,scss,json,js,ts}\"",
-    "seq": "sequelize"
+    "prettier:file": "prettier -w \"{public,src}/**/*.{md,html,scss,json,js,ts}\""
   },
   "dependencies": {
+    "aws-sdk": "^2.834.0",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "cookie-parser": "~1.4.4",
@@ -24,6 +24,8 @@
     "http-errors": "~1.6.3",
     "jsonwebtoken": "^8.5.1",
     "morgan": "~1.9.1",
+    "multer": "^1.4.2",
+    "multer-s3": "^2.9.0",
     "node-sass-middleware": "0.11.0",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",

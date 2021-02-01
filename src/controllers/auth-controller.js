@@ -8,14 +8,19 @@ const db = require('../models');
 
 module.exports = class AuthController {
   static async register(req = express.request, res = express.response, next) {
+    const { email, password, name, birthdate } = req.body;
+    const t = await db.sequelize.transaction();
     try {
-      const { email, password, name } = req.body;
+      const isEmailExist = await db.User.findOne({ where: { email } });
+      if (isEmailExist) return next(createHttpError(409, 'Email already exists!'));
       const newUser = await db.User.create(
-        { email, password, profile: { name } },
-        { include: { model: db.UserProfile, as: 'profile' } },
+        { email, password, profile: { name, birthdate } },
+        { include: { model: db.UserProfile, as: 'profile' }, transaction: t },
       );
+      await t.commit();
       return res.json(newUser);
     } catch (err) {
+      t.rollback();
       next(err);
     }
   }

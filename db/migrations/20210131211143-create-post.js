@@ -7,24 +7,29 @@ const IQuery = sequelize.getQueryInterface();
 
 module.exports = {
   up: async (queryInterface = IQuery, Sequelize = DataTypes) => {
-    await queryInterface.createTable('UserProfiles', {
+    await queryInterface.createTable('Posts', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
+        key: 'post_id',
       },
-      user_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        unique: true,
-      },
-      name: {
+      title: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      birthdate: {
-        type: Sequelize.DATE,
+      image_url: {
+        type: Sequelize.STRING,
+        defaultValue: '',
+      },
+      content: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        defaultValue: '',
+      },
+      creator: {
+        type: Sequelize.INTEGER,
       },
       created_at: {
         allowNull: false,
@@ -37,6 +42,6 @@ module.exports = {
     });
   },
   down: async (queryInterface = IQuery, Sequelize = DataTypes) => {
-    await queryInterface.dropTable('UserProfiles');
+    await queryInterface.dropTable('Posts');
   },
 };

@@ -1,9 +1,8 @@
 'use strict';
 const { Model, DataTypes } = require('sequelize');
-const { hashPassword } = require('../helpers/hash-helper');
 
 module.exports = (sequelize, DT = DataTypes) => {
-  class User extends Model {
+  class Post extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,37 +10,34 @@ module.exports = (sequelize, DT = DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.hasOne(models.UserProfile, { foreignKey: 'user_id', sourceKey: 'id', as: 'profile' });
-      this.hasMany(models.Post, { foreignKey: 'creator', sourceKey: 'id' });
+      this.belongsTo(models.User, { foreignKey: 'creator', targetKey: 'id', as: 'owner' });
     }
   }
-
-  User.init(
+  Post.init(
     {
-      email: {
+      title: {
         type: DT.STRING,
         allowNull: false,
-        unique: true,
       },
-      password: {
+      image_url: {
+        type: DT.STRING,
+        defaultValue: '',
+      },
+      content: {
         type: DT.STRING,
         allowNull: false,
+        defaultValue: '',
+      },
+      creator: {
+        type: DT.INTEGER,
       },
     },
     {
       sequelize,
-      modelName: 'User',
+      modelName: 'Post',
       createdAt: 'created_at',
       updatedAt: 'updated_at',
-      hooks: {
-        beforeCreate: async (user, opt) => {
-          const hash = await hashPassword(user.password);
-          user.password = hash;
-          return;
-        },
-      },
     },
   );
-
-  return User;
+  return Post;
 };

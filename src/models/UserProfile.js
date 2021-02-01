@@ -17,16 +17,16 @@ module.exports = (sequelize, DT = DataTypes) => {
   UserProfile.init(
     {
       user_id: {
-        type: DataTypes.INTEGER,
+        type: DT.INTEGER,
         allowNull: false,
         unique: true,
       },
       name: {
-        type: DataTypes.STRING,
+        type: DT.STRING,
         allowNull: false,
       },
-      datebirth: {
-        type: DataTypes.DATE,
+      birthdate: {
+        type: DT.DATE,
       },
     },
     {
