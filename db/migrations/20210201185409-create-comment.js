@@ -7,7 +7,7 @@ const IQuery = sequelize.getQueryInterface();
 
 module.exports = {
   up: async (queryInterface = IQuery, Sequelize = DataTypes) => {
-    await queryInterface.createTable('Comments', {
+    await queryInterface.createTable('Comment', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -35,6 +35,6 @@ module.exports = {
     });
   },
   down: async (queryInterface = IQuery, Sequelize = DataTypes) => {
-    await queryInterface.dropTable('Comments');
+    await queryInterface.dropTable('Comment');
   },
 };

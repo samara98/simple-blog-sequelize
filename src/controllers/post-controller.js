@@ -9,7 +9,7 @@ module.exports = class PostsController {
       const posts = await db.Post.findAll({
         include: [
           { model: db.User, as: 'owner' },
-          { model: db.Comment, as: 'comments' },
+          { model: db.Comment, as: 'comments', include: [{ model: db.User, as: 'commentator' }] },
         ],
       });
       return res.json(posts);

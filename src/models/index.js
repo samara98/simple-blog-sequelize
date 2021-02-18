@@ -17,6 +17,8 @@ const User = require('./User')(sequelize, DataTypes);
 const UserProfile = require('./UserProfile')(sequelize, DataTypes);
 const Post = require('./Post')(sequelize, DataTypes);
 const Comment = require('./Comment')(sequelize, DataTypes);
+const Project = require('./Project')(sequelize, DataTypes);
+const User_Project = require('./User_Project')(sequelize, DataTypes);
 
 // fs.readdirSync(__dirname)
 //   .filter((file) => {
@@ -32,6 +34,8 @@ const db = {
   UserProfile,
   Post,
   Comment,
+  Project,
+  User_Project,
   sequelize,
   Sequelize,
 };

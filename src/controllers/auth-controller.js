@@ -31,6 +31,9 @@ module.exports = class AuthController {
       const user = await db.User.findOne({
         where: { email },
         include: { model: db.UserProfile, as: 'profile' },
+        attributes: {
+          include: 'password',
+        },
       });
       if (!user) return next(createHttpError(400, 'Email or Password is invalid'));
 
@@ -39,7 +42,9 @@ module.exports = class AuthController {
 
       const payload = { sub: user.id, email: user.email };
       const token = signPayload(payload);
-      delete user.password;
+
+      const user_info = user.toJSON();
+      delete user_info.password;
 
       res.cookie('access_token', token, {
         signed: true,
@@ -48,7 +53,7 @@ module.exports = class AuthController {
         sameSite: 'lax',
         secure: process.env.NODE_ENV !== 'development',
       });
-      return res.json({ user_info: user });
+      return res.json({ user_info });
     } catch (err) {
       return next(err);
     }

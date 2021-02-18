@@ -14,6 +14,14 @@ module.exports = (sequelize, DT = DataTypes) => {
       this.hasOne(models.UserProfile, { foreignKey: 'user_id', sourceKey: 'id', as: 'profile' });
       this.hasMany(models.Post, { foreignKey: 'creator', sourceKey: 'id' });
       this.hasMany(models.Comment, { foreignKey: 'user_id', sourceKey: 'id', as: 'comments' });
+      this.belongsToMany(models.Project, {
+        through: {
+          model: models.User_Project,
+        },
+        foreignKey: 'user_id',
+        targetKey: 'id',
+        as: 'projects',
+      });
     }
   }
 
@@ -32,6 +40,7 @@ module.exports = (sequelize, DT = DataTypes) => {
     {
       sequelize,
       modelName: 'User',
+      freezeTableName: true,
       createdAt: 'created_at',
       updatedAt: 'updated_at',
       defaultScope: { attributes: { exclude: ['password'] } },

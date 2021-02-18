@@ -7,7 +7,7 @@ const IQuery = sequelize.getQueryInterface();
 
 module.exports = {
   up: async (queryInterface = IQuery, Sequelize = DataTypes) => {
-    await queryInterface.createTable('UserProfile', {
+    await queryInterface.createTable('User_Project', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -16,15 +16,9 @@ module.exports = {
       },
       user_id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-        unique: true,
       },
-      name: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      birthdate: {
-        type: Sequelize.DATE,
+      project_id: {
+        type: Sequelize.INTEGER,
       },
       created_at: {
         allowNull: false,
@@ -37,6 +31,6 @@ module.exports = {
     });
   },
   down: async (queryInterface = IQuery, Sequelize = DataTypes) => {
-    await queryInterface.dropTable('UserProfile');
+    await queryInterface.dropTable('User_Project');
   },
 };

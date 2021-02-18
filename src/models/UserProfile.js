@@ -32,6 +32,7 @@ module.exports = (sequelize, DT = DataTypes) => {
     {
       sequelize,
       modelName: 'UserProfile',
+      freezeTableName: true,
       createdAt: 'created_at',
       updatedAt: 'updated_at',
     },

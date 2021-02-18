@@ -7,7 +7,7 @@ const IQuery = sequelize.getQueryInterface();
 
 module.exports = {
   up: async (queryInterface = IQuery, Sequelize = DataTypes) => {
-    await queryInterface.createTable('Posts', {
+    await queryInterface.createTable('Post', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -42,6 +42,6 @@ module.exports = {
     });
   },
   down: async (queryInterface = IQuery, Sequelize = DataTypes) => {
-    await queryInterface.dropTable('Posts');
+    await queryInterface.dropTable('Post');
   },
 };
